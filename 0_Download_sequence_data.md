@@ -3,7 +3,10 @@
 Navigate to correct directory
 ```
 PROJDIR=/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/
-SCRIPTDIR=${PROJDIR}/
+cd ${PROJDIR}/scripts
+git clone https://github.com/dannyjackson/Hemicordylus_capensis_genome
+SCRIPTDIR=${PROJDIR}/scripts/Hemicordylus_capensis_genome
+
 ```
 ## Accessions of DNA reads:
 ```
@@ -37,5 +40,9 @@ SRR22311021
 SRR22311022
 EOF
 ```
-chmod +x ${SCRIPTDIR}/download_sra.sh
-${SCRIPTDIR}/download_sra.sh /path/to/run_accessions.txt /path/to/output
+chmod +x ${SCRIPTDIR}/0a_download_sra.sh
+
+mkdir -p ${PROJDIR}/data/assembly/HiFi_reads ${PROJDIR}/data/assembly/HiC_reads ${PROJDIR}/data/annotation/
+
+${SCRIPTDIR}/0a_download_sra.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/assembly/HiFi_reads
+${SCRIPTDIR}/0a_download_sra.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads
