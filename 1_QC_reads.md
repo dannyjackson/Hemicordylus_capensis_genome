@@ -51,6 +51,18 @@ bash ${SCRIPTDIR}/1b_seqkit_stats.sh ${PROJDIR}/reference_lists/HiFi_Accessions.
 # Run on HiC files
 bash ${SCRIPTDIR}/1b_seqkit_stats.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads ${PROJDIR}/data/quality_control/seqkit hifi_env
 
+printf 'data_type\t%s\n' "$(head -n 1 SRR22311007_seqkit_stats.tsv)" > seqkit_stats.all.tsv
+
+while read -r file;
+do
+    tail -n +2 ${file}_seqkit_stats.tsv | sed 's/^/HiFi\t/' >> seqkit_stats.all.tsv
+done < ${PROJDIR}/reference_lists/HiFi_Accessions.txt
+
+while read -r file;
+do
+    tail -n +2 ${file}_seqkit_stats.tsv | sed 's/^/HiC\t/' >> seqkit_stats.all.tsv
+done < ${PROJDIR}/reference_lists/HiC_Accessions.txt
+
 ```
 
 ## 3. jellyfish kmer distribution

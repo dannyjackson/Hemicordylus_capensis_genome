@@ -12,5 +12,6 @@ Create hifi environment
 ```
 cd ${PROJDIR}
 source myconda
-mamba create -n hifi_env hifiasm fastqc multiqc gfatools assembly-stats seqkit seqtk tidk jellyfish samtools bamtools compleasm ncbi-datasets-cli snakemake
+mamba create -n hifi_env hifiasm fastqc multiqc gfatools assembly-stats seqkit seqtk tidk samtools bamtools compleasm ncbi-datasets-cli snakemake
+mamba install -n hifi_env -c conda-forge -c bioconda kmer-jellyfish genomescope2
 ```
