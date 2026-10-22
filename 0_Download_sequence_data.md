@@ -3,10 +3,8 @@
 Navigate to correct directory
 ```
 PROJDIR=/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/
-cd ${PROJDIR}/scripts
-git clone https://github.com/dannyjackson/Hemicordylus_capensis_genome
 SCRIPTDIR=${PROJDIR}/scripts/Hemicordylus_capensis_genome
-
+git pull https://github.com/dannyjackson/Hemicordylus_capensis_genome
 ```
 ## Accessions of DNA reads:
 ```
