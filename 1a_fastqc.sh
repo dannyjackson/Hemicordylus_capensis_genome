@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=fastqc
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=16G
+#SBATCH --mem=24dG
 #SBATCH --time=24:00:00
 #SBATCH --gres=lscratch:100
 
@@ -102,6 +102,7 @@ printf '  %s\n' "${fastqs[@]}"
 
 fastqc \
     --threads "${SLURM_CPUS_PER_TASK:-4}" \
+    --memory 10000 \
     --outdir "$output_dir" \
     --dir "$tmp_dir" \
     "${fastqs[@]}"
