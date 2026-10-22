@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=fastqc
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=24dG
+#SBATCH --mem=24G
 #SBATCH --time=24:00:00
 #SBATCH --gres=lscratch:100
 

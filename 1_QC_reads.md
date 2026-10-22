@@ -28,6 +28,17 @@ bash ${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${
 
 # Run on HiC files
 bash ${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads ${PROJDIR}/data/quality_control/fastQC hifi_env
+
+# summarize
+output_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/multiQC"
+fastqc_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/fastQC"
+multiqc \
+    --module fastqc \
+    --title "Hemicordylus capensis FastQC" \
+    --filename fastqc_multiqc_report \
+    --outdir "$output_dir" \
+    --force \
+    "$fastqc_dir"
 ```
 
 ## 2. seqkit stats
