@@ -46,3 +46,7 @@ mkdir -p ${PROJDIR}/data/assembly/HiFi_reads ${PROJDIR}/data/assembly/HiC_reads 
 
 ${SCRIPTDIR}/0a_download_sra.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/assembly/HiFi_reads
 ${SCRIPTDIR}/0a_download_sra.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads
+
+${SCRIPTDIR}/0a_download_sra.sh ${PROJDIR}/reference_lists/RNA_Accessions.txt ${PROJDIR}/data/annotation/
+
+```
