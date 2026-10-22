@@ -22,14 +22,8 @@ mamba activate hifi_env
 ```
 cd ${PROJDIR}/data/quality_control/fastQC
 
-${PROJDIR}/reference_lists/HiFi_Accessions.txt
-${PROJDIR}/reference_lists/HiC_Accessions.txt
-
-${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/quality_control/fastQC
-
-
-
+# Run on HiFi files
 ${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/assembly/HiFi_reads ${PROJDIR}/data/quality_control/fastQC hifi_env
 
-# or, with hifi_env already activated from section 0:
-${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads ${PROJDIR}/data/quality_control/fastQC
+# Run on HiC files
+${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads ${PROJDIR}/data/quality_control/fastQC hifi_env
