@@ -24,6 +24,8 @@ The goal of this project is to produce chromosome-level assemblies for both hapl
 | SRR22311010 | PacBio | adult male liver | PacBio SMRT Sequel II |
 | SRR22311011 | PacBio | adult male liver | PacBio SMRT Sequel II |
 | SRR22311012 | PacBio | adult male liver | PacBio SMRT Sequel II |
+| SRR22311021 | PacBio | adult male liver | PacBio SMRT Sequel II |
+| SRR22311022 | PacBio | adult male brain | PacBio SMRT Sequel II |
 
 
 

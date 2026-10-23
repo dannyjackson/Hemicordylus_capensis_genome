@@ -4,15 +4,18 @@ Navigate to correct directory
 ```
 PROJDIR=/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/
 SCRIPTDIR=${PROJDIR}/scripts/Hemicordylus_capensis_genome
-git pull https://github.com/dannyjackson/Hemicordylus_capensis_genome
+cd ${SCRIPTDIR} 
+git pull
 ```
 ## Accessions of DNA reads:
 ```
 cat > ${PROJDIR}/reference_lists/HiFi_Accessions.txt <<'EOF'
-SRR22311009
-SRR22311010
-SRR22311011
-SRR22311012
+# SRR22311009
+# SRR22311010
+# SRR22311011
+# SRR22311012
+SRR22311021
+SRR22311022
 EOF
 
 cat > ${PROJDIR}/reference_lists/HiC_Accessions.txt <<'EOF'

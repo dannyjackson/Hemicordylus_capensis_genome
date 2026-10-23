@@ -8,6 +8,8 @@ Stages:
 ```
 PROJDIR=/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/
 SCRIPTDIR=${PROJDIR}/scripts/Hemicordylus_capensis_genome
+source myconda
+mamba activate hifi_env
 cd $SCRIPTDIR
 git pull
 
@@ -15,8 +17,7 @@ mkdir -p ${PROJDIR}/data/quality_control
 cd ${PROJDIR}/data/quality_control
 mkdir -p fastQC jellyfish seqkit
 
-source myconda
-mamba activate hifi_env
+
 ```
 
 ## 1. FastQC
@@ -29,9 +30,28 @@ bash ${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${
 # Run on HiC files
 bash ${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads ${PROJDIR}/data/quality_control/fastQC hifi_env
 
-# summarize
-output_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/multiQC"
-fastqc_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/fastQC"
+mkdir HiFi HiC
+mv *_1* HiC
+mv *_2* HiC
+mv *zip HiFi
+mv *html HiFi
+
+mkdir -p /data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/multiQC/HiFi /data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/multiQC/HiC
+
+# summarize HiFi
+output_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/multiQC/HiFi"
+fastqc_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/fastQC/HiFi"
+multiqc \
+    --module fastqc \
+    --title "Hemicordylus capensis FastQC" \
+    --filename fastqc_multiqc_report \
+    --outdir "$output_dir" \
+    --force \
+    "$fastqc_dir"
+
+# summarize HiC
+output_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/multiQC/HiC"
+fastqc_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/fastQC/HiC"
 multiqc \
     --module fastqc \
     --title "Hemicordylus capensis FastQC" \
@@ -73,4 +93,32 @@ bash ${SCRIPTDIR}/1c_jellyfish_genomescope.sh ${PROJDIR}/reference_lists/HiFi_Ac
 
 bash ${SCRIPTDIR}/1c_jellyfish_genomescope.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads ${PROJDIR}/data/quality_control/jellyfish hifi_env
 
+```
+## 4. Filter long reads
+```
+mkdir -p ${PROJDIR}/data/assembly/HiFi_reads_Q20
+cd ${PROJDIR}/data/assembly/HiFi_reads_Q20
+bash ${SCRIPTDIR}/1d_filter_hifi.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/assembly/HiFi_reads ${PROJDIR}/data/assembly/HiFi_reads_Q20 hifi_env
+```
+## 5. Redo fastqc
+```
+mkdir ${PROJDIR}/data/quality_control/fastQC/HiFi_Q20
+
+cd ${PROJDIR}/data/quality_control/fastQC/HiFi_Q20
+
+# Run on HiFi files
+bash ${SCRIPTDIR}/1a_fastqc.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/assembly/HiFi_reads_Q20 ${PROJDIR}/data/quality_control/fastQC/HiFi_Q20 hifi_env
+
+
+# summarize HiFi_Q20
+output_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/multiQC/HiFi_Q20"
+fastqc_dir="/data/Wilson_Lab/projects/Group_Genome_Assembly/Hemicordylus_capensis/data/quality_control/fastQC/HiFi_Q20"
+mkdir -p ${output_dir}
+multiqc \
+    --module fastqc \
+    --title "Hemicordylus capensis FastQC" \
+    --filename fastqc_multiqc_report \
+    --outdir "$output_dir" \
+    --force \
+    "$fastqc_dir"
 ```
