@@ -91,6 +91,8 @@ cd ${PROJDIR}/data/quality_control/jellyfish
 
 bash ${SCRIPTDIR}/1c_jellyfish_genomescope.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/assembly/HiFi_reads ${PROJDIR}/data/quality_control/jellyfish hifi_env
 
+bash ${SCRIPTDIR}/1c_jellyfish_genomescope.sh ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/assembly/HiFi_reads_Q20 ${PROJDIR}/data/quality_control/jellyfish hifi_env
+
 bash ${SCRIPTDIR}/1c_jellyfish_genomescope.sh ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads ${PROJDIR}/data/quality_control/jellyfish hifi_env
 
 ```
