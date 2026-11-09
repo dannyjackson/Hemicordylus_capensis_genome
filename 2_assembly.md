@@ -14,7 +14,8 @@ cd ${WORK}
 
 ## Run HiFiasm
 ```
-sbatch ${SCRIPTDIR}/2a_hifiasm.sh \
+sbatch ${SCRIPTDIR}/2a_run_hifi.sh \
     ${PROJDIR}/reference_lists/HiFi_Accessions.txt ${PROJDIR}/data/assembly/HiFi_reads_Q20 \
     ${PROJDIR}/reference_lists/HiC_Accessions.txt ${PROJDIR}/data/assembly/HiC_reads \
     ${PROJDIR}/analyses/hifiasm hifi_env
+```
